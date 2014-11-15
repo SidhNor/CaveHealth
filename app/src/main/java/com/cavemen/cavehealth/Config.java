@@ -10,6 +10,6 @@ public class Config {
 
     // The registration api KEY in the gcm server (configured in the GCM
     // server's AuthHelper.java file)
-    public static final String GCM_API_KEY = "";
+    public static final String GCM_API_KEY = "AIzaSyA12GtFoJw41jfj3GinBeYn-ulFzIKoFHc";
 
 }
