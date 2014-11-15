@@ -1,11 +1,11 @@
 package com.cavemen.cavehealth.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.cavemen.cavehealth.R;
+import com.cavemen.cavehealth.util.ActivityFragmentNavigator;
 import com.cavemen.cavehealth.util.NavDrawerManager;
 
 public class BaseActivity extends ActionBarActivity implements
@@ -42,28 +42,41 @@ public class BaseActivity extends ActionBarActivity implements
 
     @Override
     public void goToNavDrawerItem(int itemId) {
-        Intent intent;
         switch (itemId) {
             case NavDrawerManager.NAVDRAWER_ITEM_MY_CAVE:
-                //TODO Switch fragment util.ActivityFragmentNavigator
+                MyCaveFragment caveFrag = MyCaveFragment_.builder().build();
+                mCurrentNavigationElement = caveFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, caveFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_NEWS:
-                //TODO Switch fragment with util.ActivityFragmentNavigator
+                NewsFragment newsFrag = NewsFragment_.builder().build();
+                mCurrentNavigationElement = newsFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, newsFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_ACTIVITY_HISTORY:
-                //TODO Switch fragment with util.ActivityFragmentNavigator
+                ActivityHistoryFragment actFrag = ActivityHistoryFragment_.builder().build();
+                mCurrentNavigationElement = actFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, actFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_GROUP_ACTIVITIES:
-                //TODO Switch fragment with util.ActivityFragmentNavigator
+                GroupActivitiesFragment groupFrag = GroupActivitiesFragment_.builder().build();
+                mCurrentNavigationElement = groupFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, groupFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_MY_PROFILE:
-                //TODO Switch fragment with util.ActivityFragmentNavigator
+                MyProfileFragment myProfFrag = MyProfileFragment_.builder().build();
+                mCurrentNavigationElement = myProfFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, myProfFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_FIND_A_PEER:
-                //TODO Switch fragment with util.ActivityFragmentNavigator
+                FindAPeerFragment peerFrag = FindAPeerFragment_.builder().build();
+                mCurrentNavigationElement = peerFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, peerFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_PVP:
-                //TODO Switch fragment with util.ActivityFragmentNavigator
+                PvPFragment pvpFrag = PvPFragment_.builder().build();
+                mCurrentNavigationElement = pvpFrag;
+                ActivityFragmentNavigator.switchFragmentInMainActivity(this, pvpFrag);
                 break;
             case NavDrawerManager.NAVDRAWER_ITEM_SETTINGS:
                 SettingsActivity_.intent(this).start();

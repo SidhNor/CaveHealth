@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="?actionBarSize"
+    tools:context=".ui.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/content_padding_normal">
+
+        <com.cavemen.cavehealth.ui.widget.BezelImageView
+            android:id="@+id/avatar_image"
+            android:layout_width="@dimen/avatar_image_size"
+            android:layout_height="@dimen/avatar_image_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_mood_bad"
+            app:maskDrawable="@drawable/circle_mask" />
+
+        <TextView
+            android:id="@+id/level_text"
+            style="@style/TextHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/avatar_image"
+            android:text="@string/level_text" />
+
+        <ProgressBar
+            android:id="@+id/health_bar"
+            style="@style/CaveHealth.HealthBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/level_text"
+            android:layout_toRightOf="@id/avatar_image" />
+    </RelativeLayout>
+</LinearLayout>

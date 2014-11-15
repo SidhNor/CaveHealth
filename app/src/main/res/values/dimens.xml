@@ -52,5 +52,6 @@
     <dimen name="floating_action_button_margin">16dp</dimen>
 
     <dimen name="navdrawer_profile_image_size">40dp</dimen>
+    <dimen name="avatar_image_size">80dp</dimen>
 
 </resources>

@@ -20,5 +20,7 @@
     <string name="navdrawer_item_pvp">PvP</string>
     <string name="navdrawer_item_settings">Settings</string>
     <string name="title_settings">Settings</string>
+    <string name="description_debug">Debug and Tests</string>
+    <string name="level_text">Level %1$d</string>
 
 </resources>
