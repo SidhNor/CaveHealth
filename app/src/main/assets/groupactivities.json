@@ -1,0 +1,31 @@
+[{
+    "id": 1,
+    "name": "Football",
+    "description": "Football description",
+    "iconResourceName": "ic_group_football",
+    "bonusPointsGranted": 20
+}, {
+    "id": 2,
+    "name": "Gym",
+    "description": "Going to gym",
+    "iconResourceName": "ic_group_gym",
+    "bonusPointsGranted": 20
+}, {
+    "id": 3,
+    "name": "Basketball",
+    "description": "",
+    "iconResourceName": "ic_group_basketball",
+    "bonusPointsGranted": 20
+}, {
+    "id": 4,
+    "name": "Swimming",
+    "description": "",
+    "iconResourceName": "ic_group_swimming",
+    "bonusPointsGranted": 20
+}, {
+    "id": 5,
+    "name": "Yoga",
+    "description": "Yoga description",
+    "iconResourceName": "ic_group_yoga",
+    "bonusPointsGranted": 20
+}]

@@ -1,41 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="?actionBarSize"
-    tools:context=".ui.MainActivity">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/content_padding_normal">
+        android:orientation="vertical"
+        android:paddingTop="?actionBarSize"
+        tools:context=".ui.MainActivity">
 
-        <com.cavemen.cavehealth.ui.widget.BezelImageView
-            android:id="@+id/avatar_image"
-            android:layout_width="@dimen/avatar_image_size"
-            android:layout_height="@dimen/avatar_image_size"
-            android:scaleType="centerCrop"
-            android:src="@drawable/avatar_mood_bad"
-            app:maskDrawable="@drawable/circle_mask" />
-
-        <TextView
-            android:id="@+id/level_text"
-            style="@style/TextHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/avatar_image"
-            android:text="@string/level_text" />
-
-        <ProgressBar
-            android:id="@+id/health_bar"
-            style="@style/CaveHealth.HealthBar"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/level_text"
-            android:layout_toRightOf="@id/avatar_image" />
-    </RelativeLayout>
-</LinearLayout>
+            android:padding="@dimen/content_padding_normal">
+
+            <com.cavemen.cavehealth.ui.widget.BezelImageView
+                android:id="@+id/avatar_image"
+                android:layout_width="@dimen/avatar_image_size"
+                android:layout_height="@dimen/avatar_image_size"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar_mood_bad"
+                app:maskDrawable="@drawable/circle_mask" />
+
+            <TextView
+                android:id="@+id/level_text"
+                style="@style/TextHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/avatar_image"
+                android:text="@string/level_text" />
+
+            <ProgressBar
+                android:id="@+id/health_bar"
+                style="@style/CaveHealth.HealthBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/level_text"
+                android:layout_toRightOf="@id/avatar_image" />
+
+            <TextView
+                android:id="@+id/health_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/health_bar" />
+
+            <TextView
+                android:id="@+id/kenny_mood_description"
+                style="@style/TextHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/avatar_image"
+                android:gravity="center"
+                android:text="Kenny is feeling good" />
+        </RelativeLayout>
+
+        <com.cavemen.cavehealth.ui.widget.DailyChallengeProgress_
+            android:id="@+id/daily_challenge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/linear_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/Widget.WhiteBody.Title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/material_blue_grey_800"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/keyline_1"
+                android:text="@string/upcoming_activities_widget_title" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

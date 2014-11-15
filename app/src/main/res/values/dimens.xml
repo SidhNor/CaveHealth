@@ -54,4 +54,6 @@
     <dimen name="navdrawer_profile_image_size">40dp</dimen>
     <dimen name="avatar_image_size">80dp</dimen>
 
+    <dimen name="avatar_list_view_image_size">40dp</dimen>
+
 </resources>

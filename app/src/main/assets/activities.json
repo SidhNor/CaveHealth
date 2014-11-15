@@ -1,0 +1,37 @@
+[{
+    "id": 1,
+    "name": "Walking",
+    "description": "",
+    "iconResourceName": "ic_group_football",
+    "bonusPointsGranted": 20
+}, {
+    "id": 2,
+    "name": "Tennis",
+    "description": "",
+    "iconResourceName": "ic_group_gym",
+    "bonusPointsGranted": 20
+}, {
+    "id": 3,
+    "name": "Pull ups",
+    "description": "",
+    "iconResourceName": "ic_group_basketball",
+    "bonusPointsGranted": 20
+}, {
+    "id": 4,
+    "name": "Foos ball",
+    "description": "",
+    "iconResourceName": "ic_group_swimming",
+    "bonusPointsGranted": 20
+}, {
+    "id": 5,
+    "name": "Eye Break",
+    "description": "",
+    "iconResourceName": "ic_group_yoga",
+    "bonusPointsGranted": 20
+}, {
+    "id": 6,
+    "name": "Water",
+    "description": "",
+    "iconResourceName": "ic_group_yoga",
+    "bonusPointsGranted": 20
+}]
