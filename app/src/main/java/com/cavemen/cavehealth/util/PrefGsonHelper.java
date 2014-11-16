@@ -1,5 +1,6 @@
 package com.cavemen.cavehealth.util;
 
+import com.cavemen.cavehealth.model.Achievement;
 import com.cavemen.cavehealth.model.Activity;
 import com.cavemen.cavehealth.model.GroupActivity;
 import com.google.gson.Gson;
@@ -12,6 +13,12 @@ public class PrefGsonHelper {
 
     public static List<GroupActivity> getListOfGroupActivities(String list) {
         Type listOfActivities = new TypeToken<List<GroupActivity>>() {
+        }.getType();
+        return new Gson().fromJson(list, listOfActivities);
+    }
+
+    public static List<Achievement> getListOfGroupAchievemnts(String list) {
+        Type listOfActivities = new TypeToken<List<Achievement>>() {
         }.getType();
         return new Gson().fromJson(list, listOfActivities);
     }

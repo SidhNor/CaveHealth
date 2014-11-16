@@ -1,0 +1,38 @@
+[{
+    "id": 1,
+    "name": "Walking",
+    "description": "",
+    "level":0
+}, {
+    "id": 2,
+    "name": "Tennis",
+    "description": "",
+    "level":0
+}, {
+    "id": 3,
+    "name": "Pull ups",
+    "description": "",
+    "level":0
+}, {
+    "id": 4,
+    "name": "Foos ball",
+    "description": "GOAAAAAAAAAAAAAAAAAAAAL !",
+    "level":1
+}, {
+    "id": 5,
+    "name": "Eye Break",
+    "description": "You can see like an owl !",
+    "level":2
+}, {
+    "id": 6,
+    "name": "Water",
+    "description": "",
+    "level":3
+}, {
+     "id": 7,
+     "name": "PVP",
+     "description": "Master Of Duels!",
+     "level":0,
+     "iconResourceName":"ic_achievement_battle"
+ }
+]

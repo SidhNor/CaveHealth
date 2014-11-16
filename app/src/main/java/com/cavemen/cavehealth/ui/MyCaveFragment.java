@@ -98,17 +98,21 @@ public class MyCaveFragment extends Fragment
         List<Match> matches = syncClient.findMyMatches(1).getItems();
         long currentTime = new Date().getTime();
 
-        List<Match> upcomingMatches = new ArrayList<Match>();
-        for (Match match : matches) {
-            if (match.getTimeStamp() > currentTime) {
-                if (activitiesMap.containsKey(match.getActivityId())) {
-                    match.setActivity(activitiesMap.get(match.getActivityId()));
-                }
-                upcomingMatches.add(match);
-            }
-        }
+        if (matches != null) {
 
-        updateUIForMyMatches(upcomingMatches);
+
+            List<Match> upcomingMatches = new ArrayList<Match>();
+            for (Match match : matches) {
+                if (match.getTimeStamp() > currentTime) {
+                    if (activitiesMap.containsKey(match.getActivityId())) {
+                        match.setActivity(activitiesMap.get(match.getActivityId()));
+                    }
+                    upcomingMatches.add(match);
+                }
+            }
+
+            updateUIForMyMatches(upcomingMatches);
+        }
     }
 
     @UiThread

@@ -52,6 +52,7 @@ public interface KennyStats {
             "}]")
     String groupActivities();
 
+
     @DefaultString("[{\n" +
             "    \"activityId\": 1,\n" +
             "    \"name\": \"Walking\",\n" +
@@ -91,4 +92,43 @@ public interface KennyStats {
             "}]\n")
     String activities();
 
+    @DefaultString("[{\n" +
+            "    \"id\": 1,\n" +
+            "    \"name\": \"Walking\",\n" +
+            "    \"description\": \"\",\n" +
+            "    \"level\":0\n" +
+            "}, {\n" +
+            "    \"id\": 2,\n" +
+            "    \"name\": \"Tennis\",\n" +
+            "    \"description\": \"\",\n" +
+            "    \"level\":0\n" +
+            "}, {\n" +
+            "    \"id\": 3,\n" +
+            "    \"name\": \"Pull ups\",\n" +
+            "    \"description\": \"\",\n" +
+            "    \"level\":0\n" +
+            "}, {\n" +
+            "    \"id\": 4,\n" +
+            "    \"name\": \"Foos ball\",\n" +
+            "    \"description\": \"GOAAAAAAAAAAAAAAAAAAAAL !\",\n" +
+            "    \"level\":1\n" +
+            "}, {\n" +
+            "    \"id\": 5,\n" +
+            "    \"name\": \"Eye Break\",\n" +
+            "    \"description\": \"You can see like an owl !\",\n" +
+            "    \"level\":2\n" +
+            "}, {\n" +
+            "    \"id\": 6,\n" +
+            "    \"name\": \"Water\",\n" +
+            "    \"description\": \"\",\n" +
+            "    \"level\":3\n" +
+            "}, {\n" +
+            "     \"id\": 7,\n" +
+            "     \"name\": \"PVP\",\n" +
+            "     \"description\": \"Master Of Duels!\",\n" +
+            "     \"level\":0,\n" +
+            "     \"iconResourceName\":\"ic_achievement_battle\"\n" +
+            " }\n" +
+            "]")
+    String achievements();
 }
