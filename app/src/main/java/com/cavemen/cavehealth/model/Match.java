@@ -7,7 +7,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Match {
 
-    List<Integer> clients;
+    List<String> clients;
     private int activityId;
     private boolean ready;
     private long timeStamp;
@@ -47,11 +47,11 @@ public class Match {
         this.maxClients = maxClients;
     }
 
-    public List<Integer> getClients() {
+    public List<String> getClients() {
         return clients;
     }
 
-    public void setClients(List<Integer> clients) {
+    public void setClients(List<String> clients) {
         this.clients = clients;
     }
 

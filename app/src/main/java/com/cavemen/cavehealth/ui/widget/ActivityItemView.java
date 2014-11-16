@@ -11,7 +11,6 @@ import com.cavemen.cavehealth.model.Activity;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
-import org.w3c.dom.Text;
 
 
 @EViewGroup(R.layout.activity_item_view)

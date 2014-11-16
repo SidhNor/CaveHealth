@@ -49,5 +49,11 @@ public class UpcomingMatchWidget extends FrameLayout {
                 match.getTimeStamp(), new Date().getTime(),
                 DateUtils.MINUTE_IN_MILLIS).toString();
         matchTime.setText(formattedMatchDate);
+
+        if (match.isReady()) {
+            matchStatus.setText(getResources().getString(R.string.match_team_full));
+        } else {
+            matchStatus.setText(getResources().getString(R.string.match_waiting_for_participants));
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.cavemen.cavehealth.R;
 import com.cavemen.cavehealth.gcm.ServerUtilities;
 import com.cavemen.cavehealth.model.Activity;
 import com.cavemen.cavehealth.model.Match;
+import com.cavemen.cavehealth.model.MatchesWrapper;
 import com.cavemen.cavehealth.service.KennyStats_;
 import com.cavemen.cavehealth.service.SyncClient;
 import com.cavemen.cavehealth.service.SyncErrorHandler;
@@ -97,7 +98,11 @@ public class MyCaveFragment extends Fragment
     @Background
     void loadMyMatches() {
         syncClient.setRestErrorHandler(syncErrorHandler);
-        List<Match> matches = syncClient.findMyMatches(ServerUtilities.getGcmId(getActivity())).getItems();
+        MatchesWrapper wrapper = syncClient.findMyMatches(ServerUtilities.getGcmId(getActivity()));
+        if (wrapper == null) {
+            return;
+        }
+        List<Match> matches = wrapper.getItems();
         long currentTime = new Date().getTime();
 
         if (matches != null) {

@@ -26,5 +26,7 @@
     <string name="daily_challenge_widget_title">Daily challenge progress</string>
     <string name="action_capture_receipt">Capture sport receipt</string>
     <string name="upcoming_activities_widget_title">Upcoming activities</string>
+    <string name="match_team_full">Team gathered</string>
+    <string name="match_waiting_for_participants">Still waiting for participants</string>
 
 </resources>
