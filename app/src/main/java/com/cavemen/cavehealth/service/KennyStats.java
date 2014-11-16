@@ -23,7 +23,7 @@ public interface KennyStats {
             "    \"id\": 1,\n" +
             "    \"name\": \"Football\",\n" +
             "    \"description\": \"Football description\",\n" +
-            "    \"iconResourceName\": \"ic_active_foosball\",\n" +
+            "    \"iconResourceName\": \"ic_group_football\",\n" +
             "    \"bonusPointsGranted\": 20\n" +
             "}, {\n" +
             "    \"id\": 2,\n" +

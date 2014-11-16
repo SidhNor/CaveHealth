@@ -17,6 +17,7 @@ package com.cavemen.cavehealth.gcm;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -25,6 +26,7 @@ import android.support.v4.app.NotificationManagerCompat;
 
 import com.cavemen.cavehealth.R;
 import com.cavemen.cavehealth.gcm.command.TestCommand;
+import com.cavemen.cavehealth.ui.MainActivity;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,6 +62,10 @@ public class GCMIntentService extends IntentService {
         if(!gameID.isEmpty()){
             iconRes = R.drawable.icon_duel;
         }
+
+        Intent intentMain = new Intent(this, MainActivity.class);
+        PendingIntent viewPendingIntent =
+                PendingIntent.getActivity(this, 0, intentMain, 0);
         NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
         style.bigPicture(BitmapFactory.decodeResource(getResources(),
                 iconRes));
@@ -68,6 +74,7 @@ public class GCMIntentService extends IntentService {
         Notification notification =
                 new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher).setStyle(style).setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         iconRes)).setContentTitle("Caveman Health Monitor").setContentText(message).
+                        setContentIntent(viewPendingIntent).setAutoCancel(true).
                     build();
 
         NotificationManagerCompat notificationManager =
