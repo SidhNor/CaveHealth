@@ -1,10 +1,13 @@
 package com.cavemen.cavehealth.ui;
 
 import android.app.Fragment;
+import android.app.TimePickerDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.cavemen.cavehealth.R;
@@ -34,12 +37,12 @@ import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.ListLayoutManager;
 import org.lucasr.twowayview.widget.SpacingItemDecoration;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @EFragment(R.layout.fragment_find_a_peer)
 public class FindAPeerFragment extends Fragment
-        implements NavDrawerManager.NavDrawerItemAware {
+        implements NavDrawerManager.NavDrawerItemAware, TimePickerDialog.OnTimeSetListener {
 
     @ViewById(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -88,15 +91,33 @@ public class FindAPeerFragment extends Fragment
         int selectedItem = itemSelectionSupport.getCheckedItemPosition();
         Activity act = ((ActivitiesAdapter) mAdapter).getItemAtPosition(selectedItem);
         if (act != null) {
-            callFindPeer(act);
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            new TimePickerDialog(getActivity(), this, hour, minute,
+                    DateFormat.is24HourFormat(getActivity())).show();
+        }
+    }
+
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        final Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+
+        int selectedItem = itemSelectionSupport.getCheckedItemPosition();
+        Activity act = ((ActivitiesAdapter) mAdapter).getItemAtPosition(selectedItem);
+        if (act != null) {
+            callFindPeer(act, c.getTime().getTime());
         }
     }
 
     @Background
-    void callFindPeer(Activity act) {
+    void callFindPeer(Activity act, long timeStamp) {
         syncClient.setRestErrorHandler(syncErrorHandler);
         String endId = ServerUtilities.getGcmId(getActivity());
-        Match match = syncClient.findPeers(act.getActivityId(), act.getMaxPlayers(), new Date().getTime() + 7200000, endId, endId);
+        Match match = syncClient.findPeers(act.getActivityId(), act.getMaxPlayers(), timeStamp, endId, endId);
         confirmPeer();
     }
 
