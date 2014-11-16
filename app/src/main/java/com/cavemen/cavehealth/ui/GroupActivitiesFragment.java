@@ -1,5 +1,6 @@
 package com.cavemen.cavehealth.ui;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
@@ -80,6 +81,22 @@ public class GroupActivitiesFragment extends Fragment
 
         // start the image capture Intent
         startActivityForResult(intent, 200);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 200 && resultCode == Activity.RESULT_OK){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"sprotsStuff@endava.com"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Caveman Receipt");
+            intent.putExtra(Intent.EXTRA_TEXT, "Please find the Caveman's reciept attached to this mail.");
+            File file = new File(Environment.getExternalStorageDirectory(), "test.jpg");
+            Uri uri = Uri.fromFile(file);
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(intent, "Send Your Receipt..."));
+        }
     }
 
     @Override
