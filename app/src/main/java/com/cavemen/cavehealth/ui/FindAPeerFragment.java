@@ -4,18 +4,29 @@ import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.cavemen.cavehealth.R;
+import com.cavemen.cavehealth.gcm.ServerUtilities;
 import com.cavemen.cavehealth.model.Activity;
+import com.cavemen.cavehealth.model.Match;
 import com.cavemen.cavehealth.service.KennyStats_;
+import com.cavemen.cavehealth.service.SyncClient;
+import com.cavemen.cavehealth.service.SyncErrorHandler;
 import com.cavemen.cavehealth.ui.widget.ActivityItemView;
 import com.cavemen.cavehealth.ui.widget.ActivityItemView_;
 import com.cavemen.cavehealth.util.NavDrawerManager;
 import com.cavemen.cavehealth.util.PrefGsonHelper;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.lucasr.twowayview.ItemClickSupport;
 import org.lucasr.twowayview.ItemSelectionSupport;
@@ -23,6 +34,7 @@ import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.ListLayoutManager;
 import org.lucasr.twowayview.widget.SpacingItemDecoration;
 
+import java.util.Date;
 import java.util.List;
 
 @EFragment(R.layout.fragment_find_a_peer)
@@ -33,6 +45,13 @@ public class FindAPeerFragment extends Fragment
     RecyclerView mRecyclerView;
     @Pref
     KennyStats_ mStatsProvider;
+    @ViewById(R.id.confirmButton)
+    Button confirmButton;
+    ItemSelectionSupport itemSelectionSupport;
+    @RestService
+    SyncClient syncClient;
+    @Bean
+    SyncErrorHandler syncErrorHandler;
     private RecyclerView.Adapter mAdapter;
 
     @AfterViews
@@ -48,16 +67,44 @@ public class FindAPeerFragment extends Fragment
 
         final ItemClickSupport itemClick = ItemClickSupport.addTo(mRecyclerView);
 
-        final ItemSelectionSupport itemSelectionSupport = ItemSelectionSupport.addTo(mRecyclerView);
+        itemSelectionSupport = ItemSelectionSupport.addTo(mRecyclerView);
 
         itemSelectionSupport.setChoiceMode(ItemSelectionSupport.ChoiceMode.SINGLE);
 
         itemClick.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View child, int position, long id) {
-
+                itemSelectionSupport.setItemChecked(position, true);
+                confirmButton.setVisibility(View.VISIBLE);
+                confirmButton.setAlpha(0);
+                confirmButton.animate().alpha(1).setDuration(300).start();
             }
         });
+    }
+
+    @Click(R.id.confirmButton)
+    void confirmButtonClick() {
+
+        int selectedItem = itemSelectionSupport.getCheckedItemPosition();
+        Activity act = ((ActivitiesAdapter) mAdapter).getItemAtPosition(selectedItem);
+        if (act != null) {
+            callFindPeer(act);
+        }
+    }
+
+    @Background
+    void callFindPeer(Activity act) {
+        syncClient.setRestErrorHandler(syncErrorHandler);
+        String endId = ServerUtilities.getGcmId(getActivity());
+        Match match = syncClient.findPeers(act.getActivityId(), act.getMaxPlayers(), new Date().getTime() + 7200000, endId, endId);
+        confirmPeer();
+    }
+
+    @UiThread
+    void confirmPeer() {
+        Toast.makeText(getActivity(), "You request has been received.", Toast.LENGTH_SHORT).show();
+        confirmButton.setVisibility(View.GONE);
+        itemSelectionSupport.clearChoices();
     }
 
     @Override
@@ -77,6 +124,13 @@ public class FindAPeerFragment extends Fragment
         public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
             ActivityItemView v = ActivityItemView_.build(parent.getContext());
             return new ViewHolder(v);
+        }
+
+        public Activity getItemAtPosition(int position) {
+            if (position >= 0 && position < mDataset.size()) {
+                return mDataset.get(position);
+            }
+            return null;
         }
 
         @Override

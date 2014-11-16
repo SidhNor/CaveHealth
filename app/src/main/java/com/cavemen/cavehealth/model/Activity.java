@@ -8,6 +8,7 @@ public class Activity {
     private String bigIconResourceName;
     private String description;
     private int bonusPointsGranted;
+    private int maxPlayers;
 
     public int getActivityId() {
         return activityId;
@@ -47,6 +48,14 @@ public class Activity {
 
     public void setBonusPointsGranted(int bonusPointsGranted) {
         this.bonusPointsGranted = bonusPointsGranted;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public void setMaxPlayers(int maxPlayers) {
+        this.maxPlayers = maxPlayers;
     }
 
     public String getBigIconResourceName() {
