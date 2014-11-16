@@ -59,7 +59,7 @@ public class GCMIntentService extends IntentService {
         String message = intent.getStringExtra("message");
         String gameID = intent.getStringExtra("gameID");
         int iconRes = R.drawable.push_image;
-        if(!gameID.isEmpty()){
+        if (gameID != null && !gameID.isEmpty()) {
             iconRes = R.drawable.icon_duel;
         }
 
@@ -75,7 +75,7 @@ public class GCMIntentService extends IntentService {
                 new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher).setStyle(style).setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         iconRes)).setContentTitle("Caveman Health Monitor").setContentText(message).
                         setContentIntent(viewPendingIntent).setAutoCancel(true).
-                    build();
+                        build();
 
         NotificationManagerCompat notificationManager =
                 NotificationManagerCompat.from(this);
