@@ -12,6 +12,7 @@ import org.androidannotations.annotations.EViewGroup;
 @EViewGroup(R.layout.upcoming_match)
 public class UpcomingMatchWidget extends FrameLayout {
 
+
     public UpcomingMatchWidget(Context context) {
         super(context);
     }

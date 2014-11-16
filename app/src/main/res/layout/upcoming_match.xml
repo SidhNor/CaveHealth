@@ -3,4 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/activity_icon"
+        android:layout_width="@dimen/keyline_2"
+        android:layout_height="@dimen/keyline_2"
+        android:background="@drawable/ic_active_foosball"
+        android:paddingLeft="@dimen/keyline_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyline_2"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/keyline_2"
+        android:paddingRight="@dimen/keyline_1">
+
+        <TextView
+            android:id="@+id/activity_name"
+            style="@style/ListItem.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_vertical_spacing"
+            android:text="FoosBall" />
+
+        <TextView
+            android:id="@+id/match_time"
+            style="@style/ListItem.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_vertical_spacing"
+            android:text="In 30 minutes" />
+
+        <TextView
+            android:id="@+id/match_status"
+            style="@style/ListItem.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team gathered" />
+    </LinearLayout>
+
+
 </FrameLayout>
