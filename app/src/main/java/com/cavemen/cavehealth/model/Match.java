@@ -13,6 +13,8 @@ public class Match {
     private long timeStamp;
     private int maxClients;
 
+    private Activity activity;
+
     public int getActivityId() {
         return activityId;
     }
@@ -51,5 +53,13 @@ public class Match {
 
     public void setClients(List<Integer> clients) {
         this.clients = clients;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 }

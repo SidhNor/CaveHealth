@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cavemen.cavehealth.R;
+import com.cavemen.cavehealth.model.Activity;
 import com.cavemen.cavehealth.model.Match;
 import com.cavemen.cavehealth.service.KennyStats_;
 import com.cavemen.cavehealth.service.SyncClient;
@@ -16,6 +17,7 @@ import com.cavemen.cavehealth.ui.widget.DailyChallengeProgress;
 import com.cavemen.cavehealth.ui.widget.UpcomingMatchWidget;
 import com.cavemen.cavehealth.ui.widget.UpcomingMatchWidget_;
 import com.cavemen.cavehealth.util.NavDrawerManager;
+import com.cavemen.cavehealth.util.PrefGsonHelper;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -28,7 +30,9 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @EFragment(R.layout.fragment_my_cave)
 public class MyCaveFragment extends Fragment
@@ -64,12 +68,15 @@ public class MyCaveFragment extends Fragment
     @Bean
     SyncErrorHandler syncErrorHandler;
 
+    private Map<Integer, Activity> activitiesMap = new HashMap<Integer, Activity>();
+
     @AfterViews
     void afterViews() {
 
         int currentLevel = mStatsProvider.currentLevel().get();
         int currentHp = mStatsProvider.currentHp().get();
         int currentDailyChallengeProgress = mStatsProvider.dailyChallengeProgress().get();
+
         int maxHp = currentLevel * 100;
         healthBar.setMax(maxHp);
         healthBar.setProgress(currentHp);
@@ -78,6 +85,11 @@ public class MyCaveFragment extends Fragment
         dailyChallenge.bindProgressData(currentDailyChallengeProgress, "Push ups", "Tennis", "Foosball");
 
         loadMyMatches();
+
+        List<Activity> activities = PrefGsonHelper.getListOfActivities(mStatsProvider.activities().get());
+        for (Activity act : activities) {
+            activitiesMap.put(act.getActivityId(), act);
+        }
     }
 
     @Background
@@ -89,9 +101,13 @@ public class MyCaveFragment extends Fragment
         List<Match> upcomingMatches = new ArrayList<Match>();
         for (Match match : matches) {
             if (match.getTimeStamp() > currentTime) {
+                if (activitiesMap.containsKey(match.getActivityId())) {
+                    match.setActivity(activitiesMap.get(match.getActivityId()));
+                }
                 upcomingMatches.add(match);
             }
         }
+
         updateUIForMyMatches(upcomingMatches);
     }
 

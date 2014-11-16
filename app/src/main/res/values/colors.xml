@@ -34,4 +34,6 @@
     <color name="navdrawer_icon_tint">#808080</color>
     <color name="navdrawer_icon_tint_selected">@color/theme_primary</color>
 
+    <color name="list_dropdown_divider_color">#92a3a3a3</color>
+
 </resources>
