@@ -263,7 +263,7 @@ public final class ServerUtilities {
             throws IOException {
 
         URL url;
-        endpoint = endpoint + "1/" + params.get("deviceID");
+        endpoint = endpoint + params.get("deviceID")+ "/" + params.get("deviceID");
         try {
             url = new URL(endpoint);
         } catch (MalformedURLException e) {

@@ -57,42 +57,36 @@ public interface KennyStats {
             "    \"activityId\": 1,\n" +
             "    \"name\": \"Walking\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"bigIconResourceName\": \"ic_active_walking_b\",\n" +
             "    \"iconResourceName\": \"ic_active_walking\",\n" +
             "    \"bonusPointsGranted\": 20\n" +
             "}, {\n" +
             "    \"activityId\": 2,\n" +
             "    \"name\": \"Tennis\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"bigIconResourceName\": \"ic_active_tennis_b\",\n" +
             "    \"iconResourceName\": \"ic_active_tennis\",\n" +
             "    \"bonusPointsGranted\": 60\n" +
             "}, {\n" +
             "    \"activityId\": 3,\n" +
             "    \"name\": \"Pull ups\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"bigIconResourceName\": \"ic_active_pullups_b\",\n" +
             "    \"iconResourceName\": \"ic_active_pullups\",\n" +
             "    \"bonusPointsGranted\": 50\n" +
             "}, {\n" +
             "    \"activityId\": 4,\n" +
             "    \"name\": \"Foos ball\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"bigIconResourceName\": \"ic_active_foosball_b\",\n" +
             "    \"iconResourceName\": \"ic_active_foosball\",\n" +
             "    \"bonusPointsGranted\": 40\n" +
             "}, {\n" +
             "    \"activityId\": 5,\n" +
             "    \"name\": \"Eye Break\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"bigIconResourceName\": \"ic_active_break_b\",\n" +
             "    \"iconResourceName\": \"ic_active_break\",\n" +
             "    \"bonusPointsGranted\": 10\n" +
             "}, {\n" +
             "    \"activityId\": 6,\n" +
             "    \"name\": \"Water\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"bigIconResourceName\": \"ic_active_water_b\",\n" +
             "    \"iconResourceName\": \"ic_active_water\",\n" +
             "    \"bonusPointsGranted\": 10\n" +
             "}]\n")
@@ -135,6 +129,6 @@ public interface KennyStats {
             "     \"level\":0,\n" +
             "     \"iconResourceName\":\"ic_achievement_battle\"\n" +
             " }\n" +
-            "]\n")
+            "]")
     String achievements();
 }

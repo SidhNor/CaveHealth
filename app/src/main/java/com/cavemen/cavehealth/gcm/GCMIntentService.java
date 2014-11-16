@@ -16,8 +16,14 @@
 package com.cavemen.cavehealth.gcm;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
+import com.cavemen.cavehealth.R;
 import com.cavemen.cavehealth.gcm.command.TestCommand;
 
 import java.util.Collections;
@@ -47,19 +53,29 @@ public class GCMIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String action = intent.getStringExtra("action");
-        String extraData = intent.getStringExtra("extraData");
+        int notificationId = 001;
+        String message = intent.getStringExtra("message");
+        String gameID = intent.getStringExtra("gameID");
+        int iconRes = R.drawable.push_image;
+        if(!gameID.isEmpty()){
+            iconRes = R.drawable.icon_duel;
+        }
+        NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
+        style.bigPicture(BitmapFactory.decodeResource(getResources(),
+                iconRes));
+        style.setBigContentTitle("Caveman Health Monitor");
+        style.setSummaryText(message);
+        Notification notification =
+                new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher).setStyle(style).setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        iconRes)).setContentTitle("Caveman Health Monitor").setContentText(message).
+                    build();
 
-        if (action == null) {
-            LOGE(TAG, "Message received without command action");
-            return;
-        }
-        action = action.toLowerCase();
-        GCMCommand command = MESSAGE_RECEIVERS.get(action);
-        if (command == null) {
-            LOGE(TAG, "Unknown command received: " + action);
-        } else {
-            command.execute(this, action, extraData);
-        }
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(this);
+
+// Issue the notification with notification manager.
+        notificationManager.notify(notificationId, notification);
     }
+
+
 }

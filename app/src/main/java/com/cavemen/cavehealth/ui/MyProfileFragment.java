@@ -3,6 +3,9 @@ package com.cavemen.cavehealth.ui;
 import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.cavemen.cavehealth.R;
 import com.cavemen.cavehealth.model.Achievement;
@@ -27,6 +30,18 @@ import java.util.List;
 public class MyProfileFragment extends Fragment
         implements NavDrawerManager.NavDrawerItemAware {
 
+    @ViewById(R.id.avatar_image)
+    ImageView avatarImage;
+
+    @ViewById(R.id.level_text)
+    TextView levelText;
+
+    @ViewById(R.id.health_bar)
+    ProgressBar healthBar;
+
+    @ViewById(R.id.health_value)
+    TextView healthValue;
+
     @Pref
     KennyStats_ mStatsProvider;
 
@@ -44,6 +59,17 @@ public class MyProfileFragment extends Fragment
 
     @AfterViews
     void afterViews() {
+
+        int currentLevel = mStatsProvider.currentLevel().get();
+        int currentHp = mStatsProvider.currentHp().get();
+        int currentDailyChallengeProgress = mStatsProvider.dailyChallengeProgress().get();
+
+        int maxHp = currentLevel * 100;
+        healthBar.setMax(maxHp);
+        healthBar.setProgress(currentHp);
+        levelText.setText(getString(R.string.level_text, currentLevel));
+        healthValue.setText(getString(R.string.healthValue, currentHp, maxHp));
+
         String activitiesStr = mStatsProvider.achievements().get();
         allActivities = PrefGsonHelper.getListOfGroupAchievemnts(activitiesStr);
         myActivities = PrefGsonHelper.getListOfInts(mStatsProvider.myGroupActivities().get());

@@ -5,10 +5,62 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <org.lucasr.twowayview.widget.TwoWayView
+    <RelativeLayout
         android:layout_marginTop="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/content_padding_normal">
+
+        <com.cavemen.cavehealth.ui.widget.BezelImageView
+            android:id="@+id/avatar_image"
+            android:layout_width="@dimen/avatar_image_size"
+            android:layout_height="@dimen/avatar_image_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_mood_bad"
+            app:maskDrawable="@drawable/circle_mask" />
+
+        <TextView
+            android:id="@+id/level_text"
+            style="@style/TextHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/avatar_image"
+            android:text="@string/level_text" />
+
+        <ProgressBar
+            android:id="@+id/health_bar"
+            style="@style/CaveHealth.HealthBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/level_text"
+            android:layout_toRightOf="@id/avatar_image" />
+
+        <TextView
+            android:id="@+id/health_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/health_bar" />
+
+        <TextView
+            android:id="@+id/kenny_mood_description"
+            style="@style/TextHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avatar_image"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"
+            android:text="Kenny is feeling good" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/kenny_mood_description"
+            android:background="@color/silver"/>
+    </RelativeLayout>
+    <org.lucasr.twowayview.widget.TwoWayView
+
+        android:layout_marginLeft="36dp"
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
