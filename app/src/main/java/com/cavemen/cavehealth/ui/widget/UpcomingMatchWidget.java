@@ -43,7 +43,7 @@ public class UpcomingMatchWidget extends FrameLayout {
 
     public void bindWithData(Match match) {
         Activity act = match.getActivity();
-        activityIcon.setImageResource(getResources().getIdentifier(act.getIconResourceName(), "drawable", this.getContext().getPackageName()));
+        activityIcon.setBackgroundResource(getResources().getIdentifier(act.getIconResourceName(), "drawable", this.getContext().getPackageName()));
         nameTx.setText(act.getName());
         String formattedMatchDate = DateUtils.getRelativeTimeSpanString(
                 match.getTimeStamp(), new Date().getTime(),

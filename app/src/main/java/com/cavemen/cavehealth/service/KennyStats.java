@@ -53,37 +53,37 @@ public interface KennyStats {
     String groupActivities();
 
     @DefaultString("[{\n" +
-            "    \"id\": 1,\n" +
+            "    \"activityId\": 1,\n" +
             "    \"name\": \"Walking\",\n" +
             "    \"description\": \"\",\n" +
             "    \"iconResourceName\": \"ic_active_walking\",\n" +
             "    \"bonusPointsGranted\": 20\n" +
             "}, {\n" +
-            "    \"id\": 2,\n" +
+            "    \"activityId\": 2,\n" +
             "    \"name\": \"Tennis\",\n" +
             "    \"description\": \"\",\n" +
             "    \"iconResourceName\": \"ic_active_tennis\",\n" +
             "    \"bonusPointsGranted\": 60\n" +
             "}, {\n" +
-            "    \"id\": 3,\n" +
+            "    \"activityId\": 3,\n" +
             "    \"name\": \"Pull ups\",\n" +
             "    \"description\": \"\",\n" +
             "    \"iconResourceName\": \"ic_active_pullups\",\n" +
             "    \"bonusPointsGranted\": 50\n" +
             "}, {\n" +
-            "    \"id\": 4,\n" +
+            "    \"activityId\": 4,\n" +
             "    \"name\": \"Foos ball\",\n" +
             "    \"description\": \"\",\n" +
             "    \"iconResourceName\": \"ic_active_foosball\",\n" +
             "    \"bonusPointsGranted\": 40\n" +
             "}, {\n" +
-            "    \"id\": 5,\n" +
+            "    \"activityId\": 5,\n" +
             "    \"name\": \"Eye Break\",\n" +
             "    \"description\": \"\",\n" +
             "    \"iconResourceName\": \"ic_active_break\",\n" +
             "    \"bonusPointsGranted\": 10\n" +
             "}, {\n" +
-            "    \"id\": 6,\n" +
+            "    \"activityId\": 6,\n" +
             "    \"name\": \"Water\",\n" +
             "    \"description\": \"\",\n" +
             "    \"iconResourceName\": \"ic_active_water\",\n" +
