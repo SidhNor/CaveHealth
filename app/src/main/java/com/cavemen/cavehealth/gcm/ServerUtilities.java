@@ -24,16 +24,13 @@ import com.cavemen.cavehealth.Config;
 import com.cavemen.cavehealth.util.AccountUtils;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 
 import static com.cavemen.cavehealth.util.LogUtils.LOGD;
@@ -86,11 +83,11 @@ public final class ServerUtilities {
         }
 
         LOGI(TAG, "registering device (gcm_id = " + gcmId + ")");
-        String serverUrl = Config.GCM_SERVER_URL + "/register";
+        String serverUrl = Config.GCM_SERVER_URL;
         LOGI(TAG, "registering on GCM with GCM key: " + AccountUtils.sanitizeGcmKey(gcmKey));
 
         Map<String, String> params = new HashMap<String, String>();
-        params.put("gcm_id", gcmId);
+        params.put("deviceID", gcmId);
         params.put("gcm_key", gcmKey);
         long backoff = BACKOFF_MILLI_SECONDS + sRandom.nextInt(1000);
         // Once GCM returns a registration id, we need to register it in the
@@ -264,27 +261,14 @@ public final class ServerUtilities {
      */
     private static void post(String endpoint, Map<String, String> params, String key)
             throws IOException {
+
         URL url;
+        endpoint = endpoint + "1/" + params.get("deviceID");
         try {
             url = new URL(endpoint);
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException("invalid url: " + endpoint);
         }
-        params.put("endawanId", "1");
-        params.put("deviceID", key);
-        StringBuilder bodyBuilder = new StringBuilder();
-        Iterator<Entry<String, String>> iterator = params.entrySet().iterator();
-        // constructs the POST body using the parameters
-        while (iterator.hasNext()) {
-            Entry<String, String> param = iterator.next();
-            bodyBuilder.append(param.getKey()).append('=')
-                    .append(param.getValue());
-            if (iterator.hasNext()) {
-                bodyBuilder.append('&');
-            }
-        }
-        String body = bodyBuilder.toString();
-        LOGV(TAG, "Posting '" + body + "' to " + url);
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection) url.openConnection();
@@ -292,17 +276,9 @@ public final class ServerUtilities {
             conn.setUseCaches(false);
             conn.setChunkedStreamingMode(0);
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded;charset=UTF-8");
-            conn.setRequestProperty("Content-Length",
-                    Integer.toString(body.length()));
-            // post the request
-            OutputStream out = conn.getOutputStream();
-            out.write(body.getBytes());
-            out.close();
             // handle the response
             int status = conn.getResponseCode();
-            if (status != 200) {
+            if (status != 204) {
                 throw new IOException("Post failed with error code " + status);
             }
         } finally {

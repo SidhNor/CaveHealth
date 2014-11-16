@@ -20,12 +20,11 @@ public class BaseActivity extends ActionBarActivity implements
         NavDrawerManager.NavDrawerItemAware {
 
     protected NavDrawerManager.NavDrawerItemAware mCurrentNavigationElement;
+    String regId;
+    GoogleCloudMessaging gcm;
     private NavDrawerManager mDrawerManager;
     // Primary toolbar and drawer toggle
     private Toolbar mActionBarToolbar;
-
-    String regId;
-    GoogleCloudMessaging gcm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +129,7 @@ public class BaseActivity extends ActionBarActivity implements
                     if (gcm == null) {
                         gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
                     }
-                    regId = gcm.register("500496825264");
+                    regId = gcm.register(Config.GCM_SENDER_ID);
                     msg = "Device registered, registration ID=" + regId;
 
                     // Persist the regID - no need to register again.
