@@ -270,7 +270,8 @@ public final class ServerUtilities {
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException("invalid url: " + endpoint);
         }
-        params.put("key", key);
+        params.put("endawanId", "1");
+        params.put("deviceID", key);
         StringBuilder bodyBuilder = new StringBuilder();
         Iterator<Entry<String, String>> iterator = params.entrySet().iterator();
         // constructs the POST body using the parameters

@@ -3,7 +3,7 @@ package com.cavemen.cavehealth;
 public class Config {
 
     // GCM config
-    public static final String GCM_SERVER_URL = "";
+    public static final String GCM_SERVER_URL = "https://enpresenter.appspot.com/_ah/api/matchEndpoint/v1/createEndawan/";
 
     // the GCM sender ID is the ID of the app in Google Cloud Console
     public static final String GCM_SENDER_ID = "";

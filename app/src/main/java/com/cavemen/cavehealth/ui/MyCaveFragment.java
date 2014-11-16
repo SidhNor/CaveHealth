@@ -82,6 +82,7 @@ public class MyCaveFragment extends Fragment
         healthBar.setProgress(currentHp);
         levelText.setText(getString(R.string.level_text, currentLevel));
         healthValue.setText(getString(R.string.healthValue, currentHp, maxHp));
+
         dailyChallenge.bindProgressData(currentDailyChallengeProgress, "Push ups", "Tennis", "Foosball");
 
         loadMyMatches();
@@ -99,6 +100,7 @@ public class MyCaveFragment extends Fragment
         long currentTime = new Date().getTime();
 
         List<Match> upcomingMatches = new ArrayList<Match>();
+
         for (Match match : matches) {
             if (match.getTimeStamp() > currentTime) {
                 if (activitiesMap.containsKey(match.getActivityId())) {

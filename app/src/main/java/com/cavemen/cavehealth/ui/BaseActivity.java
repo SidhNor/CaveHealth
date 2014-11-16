@@ -1,12 +1,19 @@
 package com.cavemen.cavehealth.ui;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 
+import com.cavemen.cavehealth.Config;
 import com.cavemen.cavehealth.R;
+import com.cavemen.cavehealth.gcm.ServerUtilities;
 import com.cavemen.cavehealth.util.ActivityFragmentNavigator;
 import com.cavemen.cavehealth.util.NavDrawerManager;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.io.IOException;
 
 public class BaseActivity extends ActionBarActivity implements
         NavDrawerManager.NavDrawerListener,
@@ -16,6 +23,19 @@ public class BaseActivity extends ActionBarActivity implements
     private NavDrawerManager mDrawerManager;
     // Primary toolbar and drawer toggle
     private Toolbar mActionBarToolbar;
+
+    String regId;
+    GoogleCloudMessaging gcm;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
+        regId = ServerUtilities.getGcmId(this);
+        if (TextUtils.isEmpty(regId)) {
+            registerInBackground();
+        }
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -99,5 +119,30 @@ public class BaseActivity extends ActionBarActivity implements
     @Override
     public void onNavDrawerStateChanged(boolean isOpen, boolean isAnimating) {
 
+    }
+
+    private void registerInBackground() {
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                String msg = "";
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    regId = gcm.register("500496825264");
+                    msg = "Device registered, registration ID=" + regId;
+
+                    // Persist the regID - no need to register again.
+                    ServerUtilities.register(getApplicationContext(), regId, Config.GCM_API_KEY);
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                    // If there is an error, don't just keep trying to register.
+                    // Require the user to click a button again, or perform
+                    // exponential back-off.
+                }
+                return msg;
+            }
+        }.execute(null, null, null);
     }
 }
