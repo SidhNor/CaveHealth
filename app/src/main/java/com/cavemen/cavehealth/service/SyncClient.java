@@ -14,8 +14,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 public interface SyncClient extends RestClientErrorHandling {
 
     @Post("/findPeers/{activityId}/{maxPlayers}/{timestamp}/{endawanId}/{deviceId}")
-    Match findPeers(int activityId, int maxPlayers, long timestamp, int endawanId, String deviceId);
+    Match findPeers(int activityId, int maxPlayers, long timestamp, String endawanId, String deviceId);
 
     @Get("/collectionresponse_matchdata/{endawanId}")
-    MatchesWrapper findMyMatches(int endawanId);
+    MatchesWrapper findMyMatches(String endawanId);
 }

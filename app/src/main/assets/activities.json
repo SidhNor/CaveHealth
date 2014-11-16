@@ -2,36 +2,42 @@
     "activityId": 1,
     "name": "Walking",
     "description": "",
+    "bigIconResourceName": "ic_active_walking_b",
     "iconResourceName": "ic_active_walking",
     "bonusPointsGranted": 20
 }, {
     "activityId": 2,
     "name": "Tennis",
     "description": "",
+    "bigIconResourceName": "ic_active_tennis_b",
     "iconResourceName": "ic_active_tennis",
     "bonusPointsGranted": 60
 }, {
     "activityId": 3,
     "name": "Pull ups",
     "description": "",
+    "bigIconResourceName": "ic_active_pullups_b",
     "iconResourceName": "ic_active_pullups",
     "bonusPointsGranted": 50
 }, {
     "activityId": 4,
     "name": "Foos ball",
     "description": "",
+    "bigIconResourceName": "ic_active_foosball_b",
     "iconResourceName": "ic_active_foosball",
     "bonusPointsGranted": 40
 }, {
     "activityId": 5,
     "name": "Eye Break",
     "description": "",
+    "bigIconResourceName": "ic_active_break_b",
     "iconResourceName": "ic_active_break",
     "bonusPointsGranted": 10
 }, {
     "activityId": 6,
     "name": "Water",
     "description": "",
+    "bigIconResourceName": "ic_active_water_b",
     "iconResourceName": "ic_active_water",
     "bonusPointsGranted": 10
 }]

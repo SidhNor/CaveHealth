@@ -9,8 +9,13 @@
     <org.lucasr.twowayview.widget.TwoWayView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:paddingBottom="@dimen/default_grid_margin"
         android:paddingTop="@dimen/default_grid_margin"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/list_dropdown_divider_color"/>
 
 </LinearLayout>

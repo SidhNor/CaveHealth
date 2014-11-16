@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.cavemen.cavehealth.R;
 import com.cavemen.cavehealth.model.Activity;
 import com.cavemen.cavehealth.service.KennyStats_;
+import com.cavemen.cavehealth.ui.widget.ActivityItemView;
+import com.cavemen.cavehealth.ui.widget.ActivityItemView_;
 import com.cavemen.cavehealth.util.NavDrawerManager;
 import com.cavemen.cavehealth.util.PrefGsonHelper;
 
@@ -16,6 +18,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.lucasr.twowayview.ItemClickSupport;
+import org.lucasr.twowayview.ItemSelectionSupport;
 import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.ListLayoutManager;
 import org.lucasr.twowayview.widget.SpacingItemDecoration;
@@ -45,6 +48,10 @@ public class FindAPeerFragment extends Fragment
 
         final ItemClickSupport itemClick = ItemClickSupport.addTo(mRecyclerView);
 
+        final ItemSelectionSupport itemSelectionSupport = ItemSelectionSupport.addTo(mRecyclerView);
+
+        itemSelectionSupport.setChoiceMode(ItemSelectionSupport.ChoiceMode.SINGLE);
+
         itemClick.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View child, int position, long id) {
@@ -67,24 +74,26 @@ public class FindAPeerFragment extends Fragment
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return null;
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+            ActivityItemView v = ActivityItemView_.build(parent.getContext());
+            return new ViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder viewHolder, int i) {
-
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            holder.item.bindData(mDataset.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mDataset.size();
         }
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
-
-            public ViewHolder(View itemView) {
+            public ActivityItemView item;
+            public ViewHolder(ActivityItemView itemView) {
                 super(itemView);
+                item = itemView;
             }
         }
     }

@@ -23,7 +23,7 @@ public interface KennyStats {
             "    \"id\": 1,\n" +
             "    \"name\": \"Football\",\n" +
             "    \"description\": \"Football description\",\n" +
-            "    \"iconResourceName\": \"ic_group_football\",\n" +
+            "    \"iconResourceName\": \"ic_active_foosball\",\n" +
             "    \"bonusPointsGranted\": 20\n" +
             "}, {\n" +
             "    \"id\": 2,\n" +
@@ -93,42 +93,47 @@ public interface KennyStats {
     String activities();
 
     @DefaultString("[{\n" +
-            "    \"id\": 1,\n" +
+            "    \"activityId\": 1,\n" +
             "    \"name\": \"Walking\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"level\":0\n" +
+            "    \"bigIconResourceName\": \"ic_active_walking_b\",\n" +
+            "    \"iconResourceName\": \"ic_active_walking\",\n" +
+            "    \"bonusPointsGranted\": 20\n" +
             "}, {\n" +
-            "    \"id\": 2,\n" +
+            "    \"activityId\": 2,\n" +
             "    \"name\": \"Tennis\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"level\":0\n" +
+            "    \"bigIconResourceName\": \"ic_active_tennis_b\",\n" +
+            "    \"iconResourceName\": \"ic_active_tennis\",\n" +
+            "    \"bonusPointsGranted\": 60\n" +
             "}, {\n" +
-            "    \"id\": 3,\n" +
+            "    \"activityId\": 3,\n" +
             "    \"name\": \"Pull ups\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"level\":0\n" +
+            "    \"bigIconResourceName\": \"ic_active_pullups_b\",\n" +
+            "    \"iconResourceName\": \"ic_active_pullups\",\n" +
+            "    \"bonusPointsGranted\": 50\n" +
             "}, {\n" +
-            "    \"id\": 4,\n" +
+            "    \"activityId\": 4,\n" +
             "    \"name\": \"Foos ball\",\n" +
-            "    \"description\": \"GOAAAAAAAAAAAAAAAAAAAAL !\",\n" +
-            "    \"level\":1\n" +
+            "    \"description\": \"\",\n" +
+            "    \"bigIconResourceName\": \"ic_active_foosball_b\",\n" +
+            "    \"iconResourceName\": \"ic_active_foosball\",\n" +
+            "    \"bonusPointsGranted\": 40\n" +
             "}, {\n" +
-            "    \"id\": 5,\n" +
+            "    \"activityId\": 5,\n" +
             "    \"name\": \"Eye Break\",\n" +
-            "    \"description\": \"You can see like an owl !\",\n" +
-            "    \"level\":2\n" +
+            "    \"description\": \"\",\n" +
+            "    \"bigIconResourceName\": \"ic_active_break_b\",\n" +
+            "    \"iconResourceName\": \"ic_active_break\",\n" +
+            "    \"bonusPointsGranted\": 10\n" +
             "}, {\n" +
-            "    \"id\": 6,\n" +
+            "    \"activityId\": 6,\n" +
             "    \"name\": \"Water\",\n" +
             "    \"description\": \"\",\n" +
-            "    \"level\":3\n" +
-            "}, {\n" +
-            "     \"id\": 7,\n" +
-            "     \"name\": \"PVP\",\n" +
-            "     \"description\": \"Master Of Duels!\",\n" +
-            "     \"level\":0,\n" +
-            "     \"iconResourceName\":\"ic_achievement_battle\"\n" +
-            " }\n" +
-            "]")
+            "    \"bigIconResourceName\": \"ic_active_water_b\",\n" +
+            "    \"iconResourceName\": \"ic_active_water\",\n" +
+            "    \"bonusPointsGranted\": 10\n" +
+            "}]")
     String achievements();
 }

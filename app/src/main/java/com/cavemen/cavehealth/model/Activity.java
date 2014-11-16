@@ -5,6 +5,7 @@ public class Activity {
     private int activityId;
     private String name;
     private String iconResourceName;
+    private String bigIconResourceName;
     private String description;
     private int bonusPointsGranted;
 
@@ -46,5 +47,13 @@ public class Activity {
 
     public void setBonusPointsGranted(int bonusPointsGranted) {
         this.bonusPointsGranted = bonusPointsGranted;
+    }
+
+    public String getBigIconResourceName() {
+        return bigIconResourceName;
+    }
+
+    public void setBigIconResourceName(String bigIconResourceName) {
+        this.bigIconResourceName = bigIconResourceName;
     }
 }

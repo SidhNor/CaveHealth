@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cavemen.cavehealth.R;
+import com.cavemen.cavehealth.gcm.ServerUtilities;
 import com.cavemen.cavehealth.model.Activity;
 import com.cavemen.cavehealth.model.Match;
 import com.cavemen.cavehealth.service.KennyStats_;
@@ -96,7 +97,7 @@ public class MyCaveFragment extends Fragment
     @Background
     void loadMyMatches() {
         syncClient.setRestErrorHandler(syncErrorHandler);
-        List<Match> matches = syncClient.findMyMatches(1).getItems();
+        List<Match> matches = syncClient.findMyMatches(ServerUtilities.getGcmId(getActivity())).getItems();
         long currentTime = new Date().getTime();
 
         if (matches != null) {
