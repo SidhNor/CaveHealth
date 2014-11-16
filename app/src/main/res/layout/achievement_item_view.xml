@@ -5,7 +5,6 @@
     android:layout_height="@dimen/keyline_2"
     android:background="?selectableItemBackground">
 
-
     <com.cavemen.cavehealth.ui.widget.BezelImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/keyline_2"

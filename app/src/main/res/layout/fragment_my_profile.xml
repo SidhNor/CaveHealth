@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_marginTop="48dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:padding="@dimen/content_padding_normal">
 
         <com.cavemen.cavehealth.ui.widget.BezelImageView
@@ -49,18 +49,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/avatar_image"
-            android:gravity="center"
             android:layout_marginBottom="8dp"
+            android:gravity="center"
             android:text="Kenny is feeling good" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/kenny_mood_description"
-            android:background="@color/silver"/>
+            android:background="@color/silver" />
     </RelativeLayout>
-    <org.lucasr.twowayview.widget.TwoWayView
 
-        android:layout_marginLeft="36dp"
+    <org.lucasr.twowayview.widget.TwoWayView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
